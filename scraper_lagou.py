@@ -1,15 +1,18 @@
-import urllib.request
-from bs4 import BeautifulSoup
-import re
+import requests
 
-def getPage(url):
-    response = urllib.request.urlopen(url)
-    html = response.read().decode('utf-8')
-    soup = BeautifulSoup(html, 'html.parser')
+def getPage(city):
+    fromdata = {
+        'first': 'true',
+        'pn': 1,
+        'kd': '测试'
+    }
+    url_position = 'https://www.lagou.com/jobs/positionAjax.json?city={0}needAddtionalResult=false'.format(city)
+    r = requests.post(url_position, data=fromdata)
+    print(r.text)
 
 def main():
-    web_address = 'http://www.lagou.com'
-    getPage(web_address)
+    city = input('选择城市：')
+    getPage(city)
 
 if __name__ == "__main__":
     main()
