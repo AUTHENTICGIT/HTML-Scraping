@@ -14,4 +14,3 @@ response = requests.get('https://m.weibo.cn/api/container/getIndex?type=uid&valu
 json = response.json()
 data = json['data']
 print(data)
-
